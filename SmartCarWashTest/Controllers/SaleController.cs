@@ -52,12 +52,12 @@ namespace SmartCarWashTest.Controllers
             [HttpDelete("{id}")]
             public async Task<ActionResult<Buyer>> Delete(int id)
             {
-                var Buyer = await _db.Buyers.FirstOrDefaultAsync(x => x.Id == id);
-                if (Buyer != null)
+                var sales = await _db.Sales.FirstOrDefaultAsync(x => x.Id == id);
+                if (sales != null)
                 {
-                    _db.Remove(Buyer);
+                    _db.Remove(sales);
                     await _db.SaveChangesAsync();
-                    return Buyer;
+                    return Ok(sales);
                 }
                 return BadRequest();
             }

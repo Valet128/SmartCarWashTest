@@ -28,6 +28,10 @@ async function deleteProduct(id) {
         console.log(error.message);
     }
 }
+function detailsSale(id) {
+    document.location.href = host + "/admin/saledata";
+    localStorage.setItem("SaleId", id);
+}
 
 // создание строки для таблицы
 function row(product) {
@@ -73,6 +77,16 @@ function row(product) {
 
     const linksTd = document.createElement("td");
 
+    const DetailsLink = document.createElement("a");
+    DetailsLink.setAttribute("style", "cursor:pointer;padding:15px;");
+    DetailsLink.append("Подробнее");
+    DetailsLink.addEventListener("click", e => {
+
+        e.preventDefault();
+        detailsSale(product.id);
+    });
+
+    linksTd.append(DetailsLink);
     
     const removeLink = document.createElement("a");
     removeLink.setAttribute("style", "cursor:pointer;padding:15px;");

@@ -36,6 +36,10 @@ namespace SmartCarWashTest.Controllers
         {
             return View();
         }
-        
+        public IActionResult SaleData()
+        {
+            return View();
+        }
+
     }
 }

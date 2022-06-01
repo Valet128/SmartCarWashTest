@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace SmartCarWashTest.Models
 {
@@ -9,6 +10,7 @@ namespace SmartCarWashTest.Models
         public DbSet<Buyer> Buyers { get; set; } = null!;
         public DbSet<Sale> Sales { get; set; } = null!;
         public DbSet<ProvidedProduct> ProvidedProducts { get; set; } = null!;
+        public DbSet<SaleData> SaleDatas { get; set; } = null!;
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             Database.EnsureDeleted();
@@ -16,10 +18,12 @@ namespace SmartCarWashTest.Models
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ApplicationContext db;
+
             modelBuilder.Entity<Product>().HasData(
-                    new Product { Id = 1, Name = "Product1", Price = 5000 },
+                    new Product { Id = 1, Name = "Product1", Price = 500 },
                     new Product { Id = 2, Name = "Product2", Price = 2000 },
-                    new Product { Id = 3, Name = "Product3", Price = 500 }
+                    new Product { Id = 3, Name = "Product3", Price = 400 }
                 );
             modelBuilder.Entity<SalesPoint>().HasData(
                     new SalesPoint { Id = 1, Name = "SalesPoint1" },
@@ -42,8 +46,15 @@ namespace SmartCarWashTest.Models
                     new Buyer { Id = 2, Name = "Buyer2" },
                     new Buyer { Id = 3, Name = "Buyer3" }
                 );
+            modelBuilder.Entity<SaleData>().HasData(
+                    new SaleData { Id = 1, SaleId = 1, ProductId = 1, ProductQuantity = 2, ProductIdAmount = 1000 },
+                    new SaleData { Id = 2, SaleId = 1, ProductId = 2, ProductQuantity = 1, ProductIdAmount = 2000 },
+                    new SaleData { Id = 3, SaleId = 1, ProductId = 3, ProductQuantity = 5, ProductIdAmount = 2000 }
+                );
+
+            
             modelBuilder.Entity<Sale>().HasData(
-                    new Sale { Id = 1, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 1, TotalAmount = 2000 },
+                    new Sale { Id = 1, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 1, TotalAmount = 5000 },
                     new Sale { Id = 2, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 1, TotalAmount = 6000 },
                     new Sale { Id = 3, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 2, TotalAmount = 7000 },
                     new Sale { Id = 4, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 2, BuyerId = 2, TotalAmount = 1000 },
@@ -54,11 +65,7 @@ namespace SmartCarWashTest.Models
                     new Sale { Id = 9, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 3, TotalAmount = 11 },
                     new Sale { Id = 10, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 1, TotalAmount = 57 }
                 );
-            modelBuilder.Entity<SaleData>().HasData(
-                    new SaleData { Id = 1, SaleId = 1, ProductId = 1, ProductQuantity = 5, ProductIdAmount = 7000 },
-                    new SaleData { Id = 2, SaleId = 1, ProductId = 2, ProductQuantity = 10, ProductIdAmount = 12000 },
-                    new SaleData { Id = 3, SaleId = 1, ProductId = 3, ProductQuantity = 3, ProductIdAmount = 4000 }
-                );
+            
         }
     }
 }

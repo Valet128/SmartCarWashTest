@@ -12,6 +12,7 @@
     <Content Remove="wwwroot\js\ProvidedProductCRUD.js" />
     <Content Remove="wwwroot\js\ProvidedProductListCRUD.js" />
     <Content Remove="wwwroot\js\SaleCRUD.js" />
+    <Content Remove="wwwroot\js\SaleDataCRUD.js" />
     <Content Remove="wwwroot\js\SalesPointCRUD.js" />
   </ItemGroup>
 
@@ -22,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\js\SaleDataCRUD.js" />
     <None Include="wwwroot\js\SaleCRUD.js" />
     <None Include="wwwroot\js\ListSalesOfBuyerCRUD.js" />
     <None Include="wwwroot\js\BuyerCRUD.js" />
