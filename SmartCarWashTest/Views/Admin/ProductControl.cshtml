@@ -1,0 +1,34 @@
+﻿<div class="container">
+       <div class="row">
+           <div class="col p-3"><a href="/Admin/ProductControl"><h3>Product</h3></a></div>
+           <div class="col p-3"><a href="/Admin/SalesPointControl"><h3>SalesPoint</h3></a></div>
+           <div class="col p-3"><a href="/Admin/BuyerControl"><h3>Buyer</h3></a></div>
+           <div class="col p-3"><a href="/Admin/SaleControl"><h3>Sale</h3></a></div>
+       </div>
+   </div>
+<div class="container">
+    <h2>Список продуктов</h2>
+    <form name="productForm">
+        <input type="hidden" name="id" value="0" />
+        <div class="mb-3">
+            <label class="form-label" for="name">Имя:</label>
+            <input class="form-control" name="name" />
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Цена:</label>
+            <input class="form-control" name="price" />
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-sm btn-primary">Добавить</button>
+            <a id="reset" class="btn btn-sm btn-primary">Сбросить</a>
+        </div>
+    </form>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead><tr><th>Название</th><th>Цена</th><th></th></tr></thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+    </div>
+    
+    <script src="~/js/ProductCRUD.js"></script>

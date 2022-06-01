@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\js\BuyerCRUD.js" />
+    <Content Remove="wwwroot\js\ListSalesOfBuyerCRUD.js" />
+    <Content Remove="wwwroot\js\ProvidedProductCRUD.js" />
+    <Content Remove="wwwroot\js\ProvidedProductListCRUD.js" />
+    <Content Remove="wwwroot\js\SaleCRUD.js" />
+    <Content Remove="wwwroot\js\SalesPointCRUD.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\SaleCRUD.js" />
+    <None Include="wwwroot\js\ListSalesOfBuyerCRUD.js" />
+    <None Include="wwwroot\js\BuyerCRUD.js" />
+    <None Include="wwwroot\js\ProvidedProductListCRUD.js" />
+    <None Include="wwwroot\js\ProvidedProductCRUD.js" />
+    <None Include="wwwroot\js\SalesPointCRUD.js" />
+    <None Include="wwwroot\js\ProductCRUD.js" />
+  </ItemGroup>
+	
+
+</Project>
