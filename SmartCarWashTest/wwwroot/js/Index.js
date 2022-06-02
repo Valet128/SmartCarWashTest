@@ -30,17 +30,15 @@ async function getProducts() {
                 const rows = document.querySelector("tbody");
                 products.forEach(product => {
                     rows.append(row(product, salespoints, provided, products));
-                    
-                    
                 });
+                listQuantity(products, provided);
             }
-            
         }
-       
     }
 }
 
 function listQuantity(products, provided) {
+    var select = document.querySelector('select');
     products.forEach(product => {
         var avel = document.getElementById("av" + product.id);
         avel.innerText = 0;
@@ -48,7 +46,7 @@ function listQuantity(products, provided) {
     var indexSelected = select.selectedIndex,
         option = select.querySelectorAll('option')[indexSelected];
     var selectedId = option.getAttribute('id');
-    alert("hi");
+    
     products.forEach(product => {
         
         provided.forEach(prov => {
@@ -95,7 +93,7 @@ function row(product, salepoints, provided, products) {
     tr.append(availableTd);
     
     var select = document.querySelector('select');
-    listQuantity(products, provided);
+    
     select.onchange = function () {
         
         listQuantity(products, provided);
