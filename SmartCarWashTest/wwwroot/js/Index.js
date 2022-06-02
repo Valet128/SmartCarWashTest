@@ -33,7 +33,35 @@ async function getProducts() {
                 });
                 listQuantity(products, provided);
             }
+            else {
+                const error = await response.json();
+                console.log(error.message);
+            }
         }
+        else {
+            const error = await response.json();
+            console.log(error.message);
+        }
+    }
+    else {
+        const error = await response.json();
+        console.log(error.message);
+    }
+}
+async function buyProduct(productId, salesPointId, productQuantity) {
+    const response = await fetch(host + "/api/store", {
+        method: "POST",
+        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+            productid: productId,
+            salespointid: salesPointId,
+            productquantity: productQuantity
+        })
+    });
+
+    if (response.ok === true) {
+        const provided = await response.json();
+        listQuantity(products, provided);
     }
 }
 
@@ -125,7 +153,7 @@ function row(product, salepoints, provided, products) {
     buyLink.addEventListener("click", e => {
 
         e.preventDefault();
-        buyProduct(product.id);
+        buyProduct(product.id, selectedId, quantityInput.value);
     });
     linksTd.append(buyLink);
 

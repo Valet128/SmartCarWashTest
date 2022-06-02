@@ -42,14 +42,14 @@ namespace SmartCarWashTest.Models
                     
                 );
             modelBuilder.Entity<Buyer>().HasData(
-                    new Buyer { Id = 1, Name = "Buyer1" },
-                    new Buyer { Id = 2, Name = "Buyer2" },
-                    new Buyer { Id = 3, Name = "Buyer3" }
+                    new Buyer { Id = "1", Name = "Buyer1" },
+                    new Buyer { Id = "2", Name = "Buyer2" },
+                    new Buyer { Id = "3", Name = "Buyer3" }
                 );
             modelBuilder.Entity<SaleData>().HasData(
-                    new SaleData { Id = 1, SaleId = 1, ProductId = 1, ProductQuantity = 2, ProductIdAmount = 1000 },
-                    new SaleData { Id = 2, SaleId = 1, ProductId = 2, ProductQuantity = 1, ProductIdAmount = 2000 },
-                    new SaleData { Id = 3, SaleId = 1, ProductId = 3, ProductQuantity = 5, ProductIdAmount = 2000 }
+                    new SaleData { Id = 1, SaleId = 1, ProductId = 1, Price = 500, ProductQuantity = 2, ProductIdAmount = 1000 },
+                    new SaleData { Id = 2, SaleId = 1, ProductId = 2, Price = 2000, ProductQuantity = 1, ProductIdAmount = 2000 },
+                    new SaleData { Id = 3, SaleId = 1, ProductId = 3, Price = 400, ProductQuantity = 5, ProductIdAmount = 2000 }
                 );
 
             
