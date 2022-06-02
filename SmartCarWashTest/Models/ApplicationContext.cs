@@ -13,12 +13,12 @@ namespace SmartCarWashTest.Models
         public DbSet<SaleData> SaleDatas { get; set; } = null!;
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureDeleted();
+           
             Database.EnsureCreated();
         }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            ApplicationContext db;
 
             modelBuilder.Entity<Product>().HasData(
                     new Product { Id = 1, Name = "Product1", Price = 500 },
@@ -42,9 +42,9 @@ namespace SmartCarWashTest.Models
                     
                 );
             modelBuilder.Entity<Buyer>().HasData(
-                    new Buyer { Id = "1", Name = "Buyer1" },
-                    new Buyer { Id = "2", Name = "Buyer2" },
-                    new Buyer { Id = "3", Name = "Buyer3" }
+                    new Buyer { Id = 1, Name = "Buyer1" },
+                    new Buyer { Id = 2, Name = "Buyer2" },
+                    new Buyer { Id = 3, Name = "Buyer3" }
                 );
             modelBuilder.Entity<SaleData>().HasData(
                     new SaleData { Id = 1, SaleId = 1, ProductId = 1, Price = 500, ProductQuantity = 2, ProductIdAmount = 1000 },
@@ -55,13 +55,13 @@ namespace SmartCarWashTest.Models
             
             modelBuilder.Entity<Sale>().HasData(
                     new Sale { Id = 1, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 1, TotalAmount = 5000 },
-                    new Sale { Id = 2, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 1, TotalAmount = 6000 },
-                    new Sale { Id = 3, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 2, TotalAmount = 7000 },
-                    new Sale { Id = 4, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 2, BuyerId = 2, TotalAmount = 1000 },
-                    new Sale { Id = 5, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 2, BuyerId = 3, TotalAmount = 60 },
+                    new Sale { Id = 2, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 2, TotalAmount = 6000 },
+                    new Sale { Id = 3, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 1, BuyerId = 3, TotalAmount = 7000 },
+                    new Sale { Id = 4, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 2, BuyerId = 1, TotalAmount = 1000 },
+                    new Sale { Id = 5, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 2, BuyerId = 2, TotalAmount = 60 },
                     new Sale { Id = 6, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 2, BuyerId = 3, TotalAmount = 700 },
-                    new Sale { Id = 7, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 2, TotalAmount = 5000 },
-                    new Sale { Id = 8, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 1, TotalAmount = 400 },
+                    new Sale { Id = 7, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 1, TotalAmount = 5000 },
+                    new Sale { Id = 8, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 2, TotalAmount = 400 },
                     new Sale { Id = 9, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 3, TotalAmount = 11 },
                     new Sale { Id = 10, Date = DateTime.Now.ToShortDateString(), Time = DateTime.Now.ToLongTimeString(), SalesPointId = 3, BuyerId = 1, TotalAmount = 57 }
                 );

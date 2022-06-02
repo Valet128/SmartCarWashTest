@@ -18,29 +18,24 @@ namespace SmartCarWashTest.Controllers
         {
             if (sale != null)
             {
-                
-                    var providedproduct = await _db.ProvidedProducts.Where(pp => pp.SalesPointId == sale.SalesPointId).ToListAsync();
-                    _db.Sales.Add(sale);
-                    
-                    foreach (var data in sale.SalesData)
-                    {
-                        data.SaleId = sale.Id;
-                        foreach (var product in providedproduct)
-                        {
-                            if (data.ProductId == product.ProductId)
-                            {
-                                product.ProductQuantity -= data.ProductQuantity;
-                            _db.SaveChanges();
-                        }
-                        }
-                        _db.SaleDatas.Add(data);
-                        _db.SaveChanges();
-                    }
-                    
-                    
-                    return Ok();
-                
-                
+                 var providedproduct = await _db.ProvidedProducts.Where(pp => pp.SalesPointId == sale.SalesPointId).ToListAsync();
+                 _db.Sales.Add(sale);
+                 
+                 foreach (var data in sale.SalesData)
+                 {
+                     data.SaleId = sale.Id;
+                    _db.SaleDatas.Add(data);
+                    _db.SaveChanges();
+                    foreach (var product in providedproduct)
+                     {
+                         if (data.ProductId == product.ProductId)
+                         {
+                             product.ProductQuantity -= data.ProductQuantity;
+                             _db.SaveChanges();
+                         }
+                     }
+                 }
+                 return Ok(sale);
             }
             return BadRequest();
         }

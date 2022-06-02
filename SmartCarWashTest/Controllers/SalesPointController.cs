@@ -31,7 +31,7 @@ namespace SmartCarWashTest.Controllers
             {
                 _db.SalesPoints.Add(SalesPoint);
                 await _db.SaveChangesAsync();
-                return SalesPoint;
+                return Ok(SalesPoint);
             }
             return BadRequest();
 
@@ -44,7 +44,7 @@ namespace SmartCarWashTest.Controllers
             {
                 _db.SalesPoints.Update(SalesPoint);
                 await _db.SaveChangesAsync();
-                return SalesPoint;
+                return Ok(SalesPoint);
             }
             return NotFound();
         }

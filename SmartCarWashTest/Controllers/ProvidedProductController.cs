@@ -26,6 +26,18 @@ namespace SmartCarWashTest.Controllers
             var products = _db.ProvidedProducts.Where(x => x.SalesPointId == id).ToList();
             return products;
         }
+        [HttpPost]
+        public async Task<ActionResult<ProvidedProduct>> Post(ProvidedProduct providedProduct)
+        {
+            if (providedProduct != null)
+            {
+                _db.ProvidedProducts.Add(providedProduct);
+                await _db.SaveChangesAsync();
+                return Ok(providedProduct);
+            }
+            return BadRequest();
+
+        }
 
         [HttpPut]
         public async Task<ActionResult> Put(ProvidedProduct providedProduct)

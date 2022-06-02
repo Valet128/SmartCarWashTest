@@ -19,45 +19,45 @@ namespace SmartCarWashTest.Controllers
             var sales = await _db.Sales.ToListAsync();
             return Ok(sales);
             }
-        [HttpGet("{id}")]
+            [HttpGet("{id}")]
             public async Task<ActionResult<Sale>> Get(int id)
             {
-                var Sales = await _db.Sales.Where(x => x.BuyerId == id).ToListAsync();
+                var Sales = await _db.Sales.Where(x => x.Id == id).ToListAsync();
                 if (Sales == null) return NotFound();
                 return Ok(Sales);
             }
             [HttpPost]
-            public async Task<ActionResult<Buyer>> Post(Buyer Buyer)
+            public async Task<ActionResult<Sale>> Post(Sale sale)
             {
-                if (Buyer != null)
+                if (sale != null)
                 {
-                    _db.Buyers.Add(Buyer);
+                    _db.Sales.Add(sale);
                     await _db.SaveChangesAsync();
-                    return Buyer;
+                    return Ok(sale);
                 }
                 return BadRequest();
 
             }
             [HttpPut]
-            public async Task<ActionResult<Buyer>> Put(Buyer Buyer)
+            public async Task<ActionResult<Sale>> Put(Sale sale)
             {
-                if (Buyer != null)
+                if (sale != null)
                 {
-                    _db.Update(Buyer);
+                    _db.Update(sale);
                     await _db.SaveChangesAsync();
-                    return Buyer;
+                    return Ok(sale);
                 }
                 return NotFound();
             }
             [HttpDelete("{id}")]
-            public async Task<ActionResult<Buyer>> Delete(int id)
+            public async Task<ActionResult<Sale>> Delete(int id)
             {
-                var sales = await _db.Sales.FirstOrDefaultAsync(x => x.Id == id);
-                if (sales != null)
+                var sale = await _db.Sales.FirstOrDefaultAsync(x => x.Id == id);
+                if (sale != null)
                 {
-                    _db.Remove(sales);
+                    _db.Remove(sale);
                     await _db.SaveChangesAsync();
-                    return Ok(sales);
+                    return Ok(sale);
                 }
                 return BadRequest();
             }

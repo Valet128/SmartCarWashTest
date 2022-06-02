@@ -19,7 +19,7 @@ namespace SmartCarWashTest.Controllers
             return await _db.Buyers.ToListAsync();
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<Buyer>> Get(string id)
+        public async Task<ActionResult<Buyer>> Get(int id)
         {
             var Buyer = await _db.Buyers.FirstOrDefaultAsync(x => x.Id == id);
             if (Buyer == null) return NotFound();
@@ -49,7 +49,7 @@ namespace SmartCarWashTest.Controllers
             return NotFound();
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Buyer>> Delete(string id)
+        public async Task<ActionResult<Buyer>> Delete(int id)
         {
             var Buyer = await _db.Buyers.FirstOrDefaultAsync(x => x.Id == id);
             if (Buyer != null)
