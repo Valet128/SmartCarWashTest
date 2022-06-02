@@ -13,6 +13,13 @@ namespace SmartCarWashTest.Controllers
             _db = db;
         }
 
+        [HttpGet]
+        public ActionResult<IEnumerable<ProvidedProduct>> Get()
+        {
+            var products = _db.ProvidedProducts.ToList();
+            return products;
+        }
+
         [HttpGet("{id}")]
         public ActionResult<IEnumerable<ProvidedProduct>> Get(int id)
         {
