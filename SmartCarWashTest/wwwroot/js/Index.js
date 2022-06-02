@@ -1,4 +1,5 @@
 ﻿var host = window.location.origin;
+
 // Получение всех продуктов
 async function getProducts() {
     const response = await fetch(host + "/api/product", {
@@ -24,11 +25,13 @@ async function getProducts() {
 
             if (response3.ok === true) {
                  provided = await response3.json();
-
+                
 
                 const rows = document.querySelector("tbody");
                 products.forEach(product => {
                     rows.append(row(product, salespoints, provided, products));
+                    
+                    
                 });
             }
             
@@ -37,7 +40,27 @@ async function getProducts() {
     }
 }
 
+function listQuantity(products, provided) {
+    products.forEach(product => {
+        var avel = document.getElementById("av" + product.id);
+        avel.innerText = 0;
+    });
+    var indexSelected = select.selectedIndex,
+        option = select.querySelectorAll('option')[indexSelected];
+    var selectedId = option.getAttribute('id');
+   
+    products.forEach(product => {
+        
+        provided.forEach(prov => {
 
+            if (product.id == prov.productId && prov.salesPointId == selectedId) {
+                var avel = document.getElementById("av" + product.id);
+                avel.innerText = prov.productQuantity;
+            }
+
+        });
+    });
+}
 
 function row(product, salepoints, provided, products) {
     if (document.querySelector("select").children.length === 0) {
@@ -72,26 +95,10 @@ function row(product, salepoints, provided, products) {
     tr.append(availableTd);
     
     var select = document.querySelector('select');
-    
-    
+    listQuantity(products, provided);
     select.onchange = function () {
-        products.forEach(product => {
-            var avel = document.getElementById("av" + product.id);
-            avel.innerText = 0;
-        });
-        var indexSelected = select.selectedIndex,
-            option = select.querySelectorAll('option')[indexSelected];
-        var selectedId = option.getAttribute('id');
-        products.forEach(product => {
-            provided.forEach(prov => {
-               
-                if (product.id == prov.productId && prov.salesPointId == selectedId) {
-                    var avel = document.getElementById("av" + product.id);
-                    avel.innerText = prov.productQuantity;
-                }
-                
-            });
-        });
+        
+        listQuantity(products, provided);
     };
     
     
