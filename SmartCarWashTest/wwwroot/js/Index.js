@@ -48,7 +48,7 @@ function listQuantity(products, provided) {
     var indexSelected = select.selectedIndex,
         option = select.querySelectorAll('option')[indexSelected];
     var selectedId = option.getAttribute('id');
-   
+    alert("hi");
     products.forEach(product => {
         
         provided.forEach(prov => {
