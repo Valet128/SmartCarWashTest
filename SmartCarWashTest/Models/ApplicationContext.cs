@@ -1,21 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartCarWashTest.Services;
 using System.Linq;
 
 namespace SmartCarWashTest.Models
 {
     public class ApplicationContext : DbContext
     {
+        
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<SalesPoint> SalesPoints { get; set; } = null!;
         public DbSet<Buyer> Buyers { get; set; } = null!;
         public DbSet<Sale> Sales { get; set; } = null!;
         public DbSet<ProvidedProduct> ProvidedProducts { get; set; } = null!;
         public DbSet<SaleData> SaleDatas { get; set; } = null!;
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public ApplicationContext(DbContextOptions<ApplicationContext> options, CountService countService) : base(options)
         {
-           
+            if (countService.Count == 0) Database.EnsureDeleted();
             Database.EnsureCreated();
+            countService.Counting();
         }
+        
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

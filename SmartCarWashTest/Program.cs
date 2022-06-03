@@ -1,8 +1,9 @@
 using SmartCarWashTest.Models;
+using SmartCarWashTest.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.AddSingleton<CountService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
